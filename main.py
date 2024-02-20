@@ -15,3 +15,16 @@ def mytictactoe(val):
     print("\t     |     |")
     print("\n")
  
+ 
+ # Function to print the score-board
+def myscoreboard(scoreboard):
+    print("\t--------------------------------")
+    print("\t         SCORE BOARD       ")
+    print("\t--------------------------------")
+ 
+    listofplayers = list(scoreboard.keys())
+    print("\t   ", listofplayers[0], "\t    ", scoreboard[listofplayers[0]])
+    print("\t   ", listofplayers[1], "\t    ", scoreboard[listofplayers[1]])
+ 
+    print("\t--------------------------------\n")
+ 
