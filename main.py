@@ -28,3 +28,18 @@ def myscoreboard(scoreboard):
  
     print("\t--------------------------------\n")
  
+ 
+ # Function to check if any player has won
+def check_Victory(playerpos, curplayer):
+ 
+    # All possible winning combinations
+    solution = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+ 
+    # Loop to check if any winning combination is satisfied
+    for i in solution:
+        if all(j in playerpos[curplayer] for j in i):
+ 
+            # Return True if any winning combination satisfies
+            return True
+    # Return False if no combination is satisfied       
+    return False 
