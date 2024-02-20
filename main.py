@@ -111,3 +111,81 @@ def singlegame(curplayer):
         else:
             curplayer = 'X'
  
+ 
+ if __name__ == "__main__":
+ 
+    print("First Player")
+    FirstPlayer = input("Specify the Name: ")
+    print("\n")
+ 
+    print("Second Player")
+    SecondPlayer = input("Specify the Name: ")
+    print("\n")
+     
+    # Storing the player who chooses X and O
+    curplayer = FirstPlayer
+ 
+    # Storing the Players' choice
+    playerchoice = {'X' : "", 'O' : ""}
+ 
+    # Storing the options
+    opt = ['X', 'O']
+ 
+    # Stores the scoreboard
+    scoreboard = {FirstPlayer: 0, SecondPlayer: 0}
+    myscoreboard(scoreboard)
+ 
+    # Loop for a series of Tic-Tac-Toe game
+    # The loop executes until the players quit
+    while True:
+ 
+        # Main Menu for Players
+        print(curplayer, "will make the choice:")
+        print("Press 1 for X")
+        print("Press 2 for O")
+        print("Press 3 to Quit")
+ 
+        # Try exception for THE_CHOICE input
+        try:
+            the_choice = int(input())   
+        except ValueError:
+            print("Invalid Input!!! Try Again\n")
+            continue
+ 
+        # Conditions for player choice  
+        if the_choice == 1:
+            playerchoice['X'] = curplayer
+            if curplayer == FirstPlayer:
+                playerchoice['O'] = SecondPlayer
+            else:
+                playerchoice['O'] = FirstPlayer
+ 
+        elif the_choice == 2:
+            playerchoice['O'] = curplayer
+            if curplayer == FirstPlayer:
+                playerchoice['X'] = SecondPlayer
+            else:
+                playerchoice['X'] = FirstPlayer
+         
+        elif the_choice == 3:
+            print("The Final Scores")
+            myscoreboard(scoreboard)
+            break  
+ 
+        else:
+            print("Invalid Selection!! Try Again\n")
+ 
+        # Storing the winner in a single game of Tic-Tac-Toe
+        win = singlegame(opt[the_choice - 1])
+         
+        # Updation of the scoreboard as per the winner
+        if win != 'D' :
+            playerWon = playerchoice[win]
+            scoreboard[playerWon] = scoreboard[playerWon] + 1
+ 
+        myscoreboard(scoreboard)
+        # Switching player who chooses X or O
+        if curplayer == FirstPlayer:
+            curplayer = SecondPlayer
+        else:
+            curplayer = FirstPlayer
