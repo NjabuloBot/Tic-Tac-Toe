@@ -43,3 +43,10 @@ def check_Victory(playerpos, curplayer):
             return True
     # Return False if no combination is satisfied       
     return False 
+    
+    
+# Function to check if the game is drawn
+def check_Tie(playerpos):
+    if len(playerpos['X']) + len(playerpos['O']) == 9:
+        return True
+    return False 
