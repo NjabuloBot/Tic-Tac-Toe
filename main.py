@@ -50,3 +50,64 @@ def check_Tie(playerpos):
     if len(playerpos['X']) + len(playerpos['O']) == 9:
         return True
     return False 
+    
+    
+# Function for a single game of Tic Tac Toe
+def singlegame(curplayer):
+ 
+    # Represents the Tic Tac Toe
+    val = [' ' for i in range(9)]
+     
+    # Stores the positions occupied by X and O
+    playerpos = {'X' : [], 'O' : []}
+     
+    # Game Loop for a single game of Tic Tac Toe
+    while True:
+        mytictactoe(val)
+         
+        # Try-Exception block for CHANCE input
+        try:
+            print("Player ", curplayer, " turn. Choose your Block : ", end="")
+            chance = int(input()) 
+        except ValueError:
+            print("Invalid Input!!! Try Again")
+            continue
+ 
+        # Sanity check for CHANCE input
+        if chance < 1 or chance > 9:
+            print("Invalid Input!!! Try Again")
+            continue
+ 
+        # Checking if the block is not occupied already
+        if val[chance - 1] != ' ':
+            print("Oops! The Place is already occupied. Try again!!")
+            continue
+ 
+        # Updating game information
+ 
+        # Update the status of the grid 
+        val[chance - 1] = curplayer
+ 
+        # Update the positions of the player
+        playerpos[curplayer].append(chance)
+ 
+        # Calling Function to check Victory
+        if check_Victory(playerpos, curplayer):
+            mytictactoe(val)
+            print("Congratulations! Player ", curplayer, " has won the game!!")     
+            print("\n")
+            return curplayer
+ 
+        # Calling Function to check Tie
+        if check_Tie(playerpos):
+            mytictactoe(val)
+            print("Game Tied")
+            print("\n")
+            return 'D'
+ 
+        # Switching moves of the player
+        if curplayer == 'X':
+            curplayer = 'O'
+        else:
+            curplayer = 'X'
+ 
